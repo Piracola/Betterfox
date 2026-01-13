@@ -223,6 +223,15 @@ user_pref("layout.word_select.eat_space_to_next_word", false); // 双击选择�
 // 访问 https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // 在此行下方输入您的个人覆盖设置：
 
+/* 优化浏览器动效，从Zen Browser中复制而来 */
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12); // 连续运动的最大时间差（毫秒），控制平滑滚动的响应速度
+user_pref("general.smoothScroll.msdPhysics.enabled", true); // 启用MSD物理模型，提供更自然的滚动体验
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600); // 运动开始时的弹簧常数，影响滚动启动的力度
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650); // 常规弹簧常数，影响滚动过程中的弹性
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25); // 减速的最小时间差（毫秒），控制滚动减速的时机
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250); // 减速弹簧常数，影响滚动减速的平滑度
+user_pref("mousewheel.min_line_scroll_amount", 10); // 鼠标滚轮最小滚动行数，控制滚动的灵敏度
+
 
 
 /****************************************************************************
