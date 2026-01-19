@@ -231,6 +231,8 @@ user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650); // 常�
 user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25); // 减速的最小时间差（毫秒），控制滚动减速的时机
 user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250); // 减速弹簧常数，影响滚动减速的平滑度
 user_pref("mousewheel.min_line_scroll_amount", 10); // 鼠标滚轮最小滚动行数，控制滚动的灵敏度
+user_pref("full-screen-api.transition-duration.enter", 200, 200); // 进入全屏时的动画时长
+user_pref("full-screen-api.transition-duration.leave", 200, 200); // 退出全屏时的动画时长
 
 
 

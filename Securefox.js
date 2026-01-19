@@ -1,43 +1,43 @@
 
 /****************************************************************************
  * Securefox                                                                *
- * "Natura non contristatur"                                                *     
- * priority: provide sensible security and privacy                          *
- * version: 146                                                             *
+ * "Natura non contristatur"                                                *
+ * 优先级：提供合理的安全性和隐私保护                                          *
+ * 版本：146                                                                 *
  * url: https://github.com/yokoffing/Betterfox                              *
- * credit: Most prefs are reproduced and adapted from the arkenfox project  *
- * credit urL: https://github.com/arkenfox/user.js                          *
+ * 致谢：大多数首选项复制并改编自 arkenfox 项目                              *
+ * 致谢链接：https://github.com/arkenfox/user.js                            *
 ****************************************************************************/
 
 /****************************************************************************
- * SECTION: TRACKING PROTECTION                                             *
+ * 章节：跟踪保护                                                              *
 ****************************************************************************/
-// PREF: enable ETP Strict Mode [FF86+]
-// ETP Strict Mode enables Total Cookie Protection (TCP)
-// [NOTE] Adding site exceptions disables all ETP protections for that site and increases the risk of
-// cross-site state tracking e.g. exceptions for SiteA and SiteB means PartyC on both sites is shared
+// 首选项：启用 ETP 严格模式 [FF86+]
+// ETP 严格模式启用完全 Cookie 保护（TCP）
+// [注意] 添加网站例外会禁用该网站的所有 ETP 保护，并增加跨站状态跟踪的风险
+// 例如：为网站 A 和网站 B 添加例外意味着这两个网站上的第三方 C 可以共享数据
 // [1] https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/
 // [2] https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop
 // [3] https://www.reddit.com/r/firefox/comments/l7xetb/network_priority_for_firefoxs_enhanced_tracking/gle2mqn/?web2x&context=3
-// [SETTING] to add site exceptions: Urlbar>ETP Shield
-// [SETTING] to manage site exceptions: Options>Privacy & Security>Enhanced Tracking Protection>Manage Exceptions
-user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
-//user_pref("privacy.trackingprotection.enabled", true); // enabled with "Strict"
-//user_pref("privacy.trackingprotection.pbmode.enabled", true); // DEFAULT
-//user_pref("browser.contentblocking.customBlockList.preferences.ui.enabled", false); // DEFAULT
-//user_pref("privacy.trackingprotection.socialtracking.enabled", true); // enabled with "Strict"
-    //user_pref("privacy.socialtracking.block_cookies.enabled", true); // DEFAULT
-//user_pref("privacy.trackingprotection.cryptomining.enabled", true); // DEFAULT
-//user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // DEFAULT
-//user_pref("privacy.trackingprotection.emailtracking.enabled", true); // enabled with "Strict"
-//user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true); // DEFAULT
-    //user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.pbmode", true); // DEFAULT
-    //user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.pbmode.top_navigation", true); // DEFAULT
-    //user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // enabled with "Strict"
-//user_pref("privacy.annotate_channels.strict_list.enabled", true); // enabled with "Strict"
-    //user_pref("privacy.annotate_channels.strict_list.pbmode.enabled", true); // DEFAULT
-//user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+] enabled with "Strict"
-    //user_pref("privacy.fingerprintingProtection.pbmode", true); // DEFAULT
+// [设置] 添加网站例外：地址栏 > ETP 盾牌图标
+// [设置] 管理网站例外：选项 > 隐私与安全 > 增强型跟踪保护 > 管理例外
+user_pref("browser.contentblocking.category", "strict"); // [隐藏首选项]
+//user_pref("privacy.trackingprotection.enabled", true); // 启用"严格"模式时自动启用
+//user_pref("privacy.trackingprotection.pbmode.enabled", true); // 默认值
+//user_pref("browser.contentblocking.customBlockList.preferences.ui.enabled", false); // 默认值
+//user_pref("privacy.trackingprotection.socialtracking.enabled", true); // 启用"严格"模式时自动启用
+    //user_pref("privacy.socialtracking.block_cookies.enabled", true); // 默认值
+//user_pref("privacy.trackingprotection.cryptomining.enabled", true); // 默认值
+//user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // 默认值
+//user_pref("privacy.trackingprotection.emailtracking.enabled", true); // 启用"严格"模式时自动启用
+//user_pref("network.http.referer.disallowCrossSiteRelaxingDefault", true); // 默认值
+    //user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.pbmode", true); // 默认值
+    //user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.pbmode.top_navigation", true); // 默认值
+    //user_pref("network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation", true); // 启用"严格"模式时自动启用
+//user_pref("privacy.annotate_channels.strict_list.enabled", true); // 启用"严格"模式时自动启用
+    //user_pref("privacy.annotate_channels.strict_list.pbmode.enabled", true); // 默认值
+//user_pref("privacy.fingerprintingProtection", true); // [FF114+] [ETP FF119+] 启用"严格"模式时自动启用
+    //user_pref("privacy.fingerprintingProtection.pbmode", true); // 默认值
 //user_pref("privacy.bounceTrackingProtection.mode", 1); // [FF131+] [ETP FF133+]
 // [1] https://searchfox.org/mozilla-central/source/toolkit/components/antitracking/bouncetrackingprotection/nsIBounceTrackingProtection.idl#11-23
 
