@@ -190,8 +190,6 @@ user_pref("browser.tabs.groups.smart.enabled", false); // 禁用智能标签分�
 user_pref("browser.ml.linkPreview.enabled", false); // 禁用AI链接预览，保护隐私
 
 /** FULLSCREEN NOTICE ***/
-user_pref("full-screen-api.transition-duration.enter", "0 0"); // 全屏进入过渡时间为0，立即全屏
-user_pref("full-screen-api.transition-duration.leave", "0 0"); // 全屏退出过渡时间为0，立即退出
 user_pref("full-screen-api.warning.timeout", 0); // 全屏警告超时为0，不显示警告
 
 /** URL BAR ***/
