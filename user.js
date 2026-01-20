@@ -56,8 +56,8 @@ user_pref("network.dnsCacheExpiration", 3600); // DNS缓存过期时间（秒）
 user_pref("network.ssl_tokens_cache_capacity", 10240); // SSL令牌缓存容量，提升HTTPS连接建立速度
 
 /** SPECULATIVE LOADING ***/
-user_pref("network.http.speculative-parallel-limit", 0); // 禁用推测性并行加载，减少不必要的网络请求
-user_pref("network.dns.disablePrefetch", true); // 禁用DNS预取，减少DNS查询和隐私泄露
+user_pref("network.http.speculative-parallel-limit", 6); // 禁用推测性并行加载，减少不必要的网络请求  //启用推测性并行加载
+user_pref("network.dns.disablePrefetch", false); // 禁用DNS预取，减少DNS查询和隐私泄露  //启用DNS预取
 user_pref("network.dns.disablePrefetchFromHTTPS", true); // 禁用HTTPS页面DNS预取，增强隐私保护
 user_pref("browser.urlbar.speculativeConnect.enabled", false); // 禁用地址栏推测连接，减少不必要的连接
 user_pref("browser.places.speculativeConnect.enabled", false); // 禁用书签推测连接，保护隐私
@@ -229,8 +229,8 @@ user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650); // 常�
 user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25); // 减速的最小时间差（毫秒），控制滚动减速的时机
 user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250); // 减速弹簧常数，影响滚动减速的平滑度
 user_pref("mousewheel.min_line_scroll_amount", 10); // 鼠标滚轮最小滚动行数，控制滚动的灵敏度
-user_pref("full-screen-api.transition-duration.enter", 200, 200); // 进入全屏时的动画时长
-user_pref("full-screen-api.transition-duration.leave", 200, 200); // 退出全屏时的动画时长
+user_pref("full-screen-api.transition-duration.enter", "150 150"); // 进入全屏时的动画时长
+user_pref("full-screen-api.transition-duration.leave", "150 150"); // 退出全屏时的动画时长
 
 
 
