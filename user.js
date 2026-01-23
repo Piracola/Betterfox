@@ -12,40 +12,49 @@
  * "Ad meliora"                                                             *
  * version: 146                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
-****************************************************************************/
+ ****************************************************************************/
 
 /****************************************************************************
- * SECTION: FASTFOX                                                         *
-****************************************************************************/
-/** GENERAL ***/
+ * SECTION: FASTFOX (速度优化)                                               *
+ ****************************************************************************/
+/** GENERAL (通用) ***/
 user_pref("gfx.content.skia-font-cache-size", 32); // Skia字体缓存大小（MB），提升字体渲染性能
+user_pref("nglayout.initialpaint.delay", 0); // 减少页面开始渲染前的等待时间（默认250ms），提升视觉加载速度
+user_pref("nglayout.initialpaint.delay_in_oopif", 0); // 减少外部框架（iframe）开始渲染前的等待时间
 
-/** GFX ***/
+/** GFX (图形/渲染) ***/
 user_pref("gfx.webrender.layer-compositor", true); // 启用WebRender图层合成器，提升GPU渲染性能
+user_pref("gfx.webrender.all", true); // 强制启用硬件WebRender，利用GPU加速页面渲染
+user_pref("layers.gpu-process.enabled", true); // 启用独立的GPU进程，提升稳定性与性能
+user_pref("layers.mlgpu.enabled", true); // 启用高级硬件加速功能
 user_pref("gfx.canvas.accelerated.cache-items", 32768); // Canvas加速缓存项目数量，提升Canvas渲染性能
 user_pref("gfx.canvas.accelerated.cache-size", 4096); // Canvas加速缓存大小（KB），优化Canvas操作
 user_pref("webgl.max-size", 16384); // WebGL最大纹理尺寸（像素），提升WebGL性能
 
-/** DISK CACHE ***/
+/** DISK CACHE (磁盘缓存) ***/
 user_pref("browser.cache.disk.enable", false); // 禁用磁盘缓存，减少磁盘I/O，提升响应速度
 
-/** MEMORY CACHE ***/
+/** MEMORY CACHE (内存缓存) ***/
 user_pref("browser.cache.memory.capacity", 131072); // 内存缓存容量（KB），增加缓存提升加载速度
+user_pref("browser.tabs.unloadOnLowMemory", true); // 内存不足时自动卸载非活动标签页，防止系统卡顿
+user_pref("browser.low_commit_space_threshold_mb", 256); // 触发标签页卸载的内存阈值（MB）
 user_pref("browser.cache.memory.max_entry_size", 20480); // 单个缓存项最大大小（KB），防止大文件占用过多内存
 user_pref("browser.sessionhistory.max_total_viewers", 4); // 历史记录最大查看器数量，控制内存使用
 user_pref("browser.sessionstore.max_tabs_undo", 10); // 标签页撤销最大数量，减少内存占用
 
-/** MEDIA CACHE ***/
+/** MEDIA CACHE (媒体缓存) ***/
 user_pref("media.memory_cache_max_size", 262144); // 媒体内存缓存最大大小（KB），提升媒体播放流畅度
 user_pref("media.memory_caches_combined_limit_kb", 1048576); // 媒体缓存总限制（KB），优化媒体资源管理
 user_pref("media.cache_readahead_limit", 600); // 媒体缓存预读取限制（秒），平衡性能与内存
 user_pref("media.cache_resume_threshold", 300); // 媒体缓存恢复阈值（秒），优化视频播放体验
 
-/** IMAGE CACHE ***/
+/** IMAGE CACHE (图像缓存) ***/
 user_pref("image.cache.size", 10485760); // 图像缓存大小（字节），提升图片加载速度
 user_pref("image.mem.decode_bytes_at_a_time", 65536); // 图像解码字节数，优化图像渲染性能
 
-/** NETWORK ***/
+/** NETWORK (网络) ***/
+user_pref("dom.ipc.processCount", 8); // 设置内容进程数（建议根据RAM调整，8是现代电脑的平衡值）
+user_pref("dom.ipc.processCount.extension", 2); // 为扩展程序分配独立进程，提升稳定性
 user_pref("network.http.max-connections", 1800); // HTTP最大连接数，提升并发下载能力
 user_pref("network.http.max-persistent-connections-per-server", 10); // 每服务器最大持久连接数，优化服务器连接
 user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5); // 每主机最大紧急启动连接数，平衡资源使用
@@ -55,31 +64,18 @@ user_pref("network.dnsCacheEntries", 10000); // DNS缓存条目数，减少DNS�
 user_pref("network.dnsCacheExpiration", 3600); // DNS缓存过期时间（秒），优化DNS解析
 user_pref("network.ssl_tokens_cache_capacity", 10240); // SSL令牌缓存容量，提升HTTPS连接建立速度
 
-/** SPECULATIVE LOADING ***/
-user_pref("network.http.speculative-parallel-limit", 6); // 禁用推测性并行加载，减少不必要的网络请求  //启用推测性并行加载
-user_pref("network.dns.disablePrefetch", false); // 禁用DNS预取，减少DNS查询和隐私泄露  //启用DNS预取
-user_pref("network.dns.disablePrefetchFromHTTPS", false); // 禁用HTTPS页面DNS预取，增强隐私保护
-user_pref("browser.urlbar.speculativeConnect.enabled", true); // 禁用地址栏推测连接，减少不必要的连接
-user_pref("browser.places.speculativeConnect.enabled", true); // 禁用书签推测连接，保护隐私
-user_pref("network.prefetch-next", false); // 禁用预取功能，减少带宽使用和隐私泄露
+/** SPECULATIVE LOADING (推测加载) ***/
+user_pref("network.prefetch-next", false); // 默认值：true。启用预取功能（Betterfox原为false）
 
 /****************************************************************************
- * SECTION: SECUREFOX                                                       *
-****************************************************************************/
-/** TRACKING PROTECTION ***/
-// user_pref("browser.contentblocking.category", "strict"); // 内容拦截类别设置为严格模式，增强跟踪保护
-// user_pref("browser.download.start_downloads_in_tmp_dir", true); // 下载文件到临时目录，保护隐私
-user_pref("browser.uitour.enabled", false); // 禁用UI导览功能，减少隐私泄露
-user_pref("privacy.globalprivacycontrol.enabled", true); // 启用全局隐私控制，请求网站不跟踪
+ * SECTION: SECUREFOX (安全隐私)                                             *
+ ****************************************************************************/
+/** TRACKING PROTECTION (跟踪保护) ***/
 
-/** OCSP & CERTS / HPKP ***/
-// user_pref("security.OCSP.enabled", 0); // 禁用OCSP在线证书状态协议，提升隐私和性能
-// user_pref("privacy.antitracking.isolateContentScriptResources", true); // 隔离内容脚本资源，防止跨站跟踪
-user_pref("security.csp.reporting.enabled", false); // 禁用CSP报告，减少信息泄露
+/** OCSP & CERTS / HPKP (证书验证) ***/
 
 /** SSL / TLS ***/
-user_pref("browser.xul.error_pages.expert_bad_cert", true); // 显示专家证书错误页面，便于调试
-user_pref("security.tls.enable_0rtt_data", false); // 禁用TLS 0-RTT数据，提升安全性
+user_pref("browser.xul.error_pages.expert_bad_cert", true); // 默认值：false。不显示专家证书错误页面
 
 /** DISK AVOIDANCE ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true); // 私人浏览强制使用媒体内存缓存，保护隐私
@@ -109,26 +105,22 @@ user_pref("signon.privateBrowsingCapture.enabled", false); // 禁用私人浏览
 user_pref("network.auth.subresource-http-auth-allow", 1); // 限制子资源HTTP认证，防止钓鱼
 user_pref("editor.truncate_user_pastes", false); // 不截断用户粘贴内容，保留完整输入
 
-/** EXTENSIONS ***/
-user_pref("extensions.enabledScopes", 5); // 扩展启用范围，仅允许用户和应用程序目录
+/** EXTENSIONS (扩展程序) ***/
 
-/** HEADERS / REFERERS ***/
-user_pref("network.http.referer.XOriginTrimmingPolicy", 2); // 跨域Referer修剪策略，保护隐私
+/** HEADERS / REFERERS (请求头/引用页) ***/
 
-/** CONTAINERS ***/
-user_pref("privacy.userContext.ui.enabled", true); // 启用用户上下文UI，支持容器标签页
+/** CONTAINERS (容器) ***/
 
 /** VARIOUS ***/
 user_pref("pdfjs.enableScripting", false); // 禁用PDF脚本，防止PDF恶意代码执行
 
-/** SAFE BROWSING ***/
-// user_pref("browser.safebrowsing.downloads.remote.enabled", false); // 禁用远程下载安全浏览，保护隐私
+/** SAFE BROWSING (安全浏览) ***/
 
 /** MOZILLA ***/
 user_pref("permissions.default.desktop-notification", 2); // 默认拒绝桌面通知，减少打扰
 user_pref("permissions.default.geo", 2); // 默认拒绝地理位置请求，保护隐私
 user_pref("geo.provider.network.url", "https://beacondb.net/v1/geolocate"); // 地理位置服务URL，使用隐私友好的服务
-user_pref("browser.search.update", false); // 禁用搜索引擎更新，减少网络请求
+user_pref("browser.search.update", true); // 禁用搜索引擎更新，减少网络请求
 user_pref("permissions.manager.defaultsUrl", ""); // 清空权限管理默认URL，防止远程配置
 user_pref("extensions.getAddons.cache.enabled", false); // 禁用扩展缓存，减少数据传输
 
@@ -172,7 +164,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", fa
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // 禁用功能推荐通知，减少干扰
 user_pref("browser.preferences.moreFromMozilla", false); // 隐藏"更多来自Mozilla"部分，简化设置界面
 user_pref("browser.aboutConfig.showWarning", false); // 隐藏about:config警告页面，便于高级用户
-user_pref("browser.startup.homepage_override.mstone", "ignore"); // 忽略版本更新后的首页覆盖，保持用户设置
+user_pref("browser.startup.homepage_override.mstone", ""); // 忽略版本更新后的首页覆盖，保持用户设置
 user_pref("browser.aboutwelcome.enabled", false); // 禁用欢迎页面，加快启动速度
 user_pref("browser.profiles.enabled", true); // 启用多配置文件支持，便于用户管理
 
@@ -201,21 +193,20 @@ user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // 禁用新标签页赞助内容，减少广告
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false); // 禁用赞助内容复选框，简化界面
 
-/** DOWNLOADS ***/
-user_pref("browser.download.manager.addToRecentDocs", false); // 下载文件不添加到最近文档，保护隐私
+/** DOWNLOADS (下载) ***/
+user_pref("browser.download.manager.addToRecentDocs", false); // 默认值：true。下载文件添加到最近文档
 
-/** PDF ***/
-user_pref("browser.download.open_pdf_attachments_inline", true); // 内联打开PDF附件，提升用户体验
+/** PDF (PDF阅读器) ***/
 
-/** TAB BEHAVIOR ***/
+/** TAB BEHAVIOR (标签页行为) ***/
 user_pref("browser.bookmarks.openInTabClosesMenu", false); // 书签在新标签页打开后保持菜单打开，便于连续操作
 user_pref("browser.menu.showViewImageInfo", true); // 显示查看图像信息选项，便于查看图片详情
 user_pref("findbar.highlightAll", true); // 查找时高亮所有匹配项，提升查找体验
 user_pref("layout.word_select.eat_space_to_next_word", false); // 双击选择单词时不包含空格，精确选择
 
 /****************************************************************************
- * START: MY OVERRIDES                                                      *
-****************************************************************************/
+ * START: MY OVERRIDES (我的覆盖设置)                                        *
+ ****************************************************************************/
 // 访问 https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
 // 访问 https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // 在此行下方输入您的个人覆盖设置：
