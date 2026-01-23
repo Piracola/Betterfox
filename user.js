@@ -27,16 +27,15 @@ user_pref("dom.ipc.processCount", 8); // 设置内容进程数（建议根据RAM
 user_pref("gfx.webrender.layer-compositor", true); // 启用WebRender图层合成器，提升GPU渲染性能
 user_pref("gfx.webrender.all", true); // 强制启用硬件WebRender，利用GPU加速页面渲染
 user_pref("gfx.webrender.precache-shaders", true); // 预缓存渲染着色器，减少页面卡顿
-user_pref("layers.gpu-process.enabled", true); // 启用独立的GPU进程，提升稳定性与性能
 user_pref("layers.gpu-process.force-enabled", true); // 强制启用GPU进程
-user_pref("layers.mlgpu.enabled", true); // 启用高级硬件加速功能
 user_pref("media.hardware-video-decoding.force-enabled", true); // 强制开启硬件视频解码，降低CPU占用
 user_pref("gfx.canvas.accelerated.cache-items", 32768); // Canvas加速缓存项目数量，提升Canvas渲染性能
 user_pref("gfx.canvas.accelerated.cache-size", 4096); // Canvas加速缓存大小（KB），优化Canvas操作
 user_pref("webgl.max-size", 16384); // WebGL最大纹理尺寸（像素），提升WebGL性能
 
 /** DISK CACHE (磁盘缓存) ***/
-user_pref("browser.cache.disk.enable", true); // 禁用磁盘缓存，减少磁盘I/O，提升响应速度
+user_pref("browser.cache.disk.enable", false); // 禁用磁盘缓存，减少磁盘I/O，提升响应速度
+user_pref("browser.cache.memory.capacity", -1); // -1 为自动调节，或设置为 1048576 (1GB) 固定值
 
 /** MEMORY CACHE (内存缓存) ***/
 user_pref("browser.cache.memory.capacity", 131072); // 内存缓存容量（KB），增加缓存提升加载速度
@@ -69,7 +68,7 @@ user_pref("network.http.pacing.requests.enabled", false); // 禁用请求速率�
 user_pref("network.dnsCacheEntries", 10000); // DNS缓存条目数，减少DNS查询
 user_pref("network.dnsCacheExpiration", 3600); // DNS缓存过期时间（秒），优化DNS解析
 user_pref("network.ssl_tokens_cache_capacity", 10240); // SSL令牌缓存容量，提升HTTPS连接建立速度
-user_pref("network.prefetch-next", false); // 默认值：true。启用预取功能（Betterfox原为false）
+user_pref("network.prefetch-next", true); // 默认值：true。启用预取功能（Betterfox原为false）
 
 /** SCROLLING (滚动优化) - Adapted from Zen Browser ***/
 user_pref("general.smoothScroll.msdPhysics.enabled", true); // 启用MSD物理模型，提供更自然的滚动体验
