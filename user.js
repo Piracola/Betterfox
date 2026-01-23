@@ -58,9 +58,9 @@ user_pref("network.ssl_tokens_cache_capacity", 10240); // SSL令牌缓存容量�
 /** SPECULATIVE LOADING ***/
 user_pref("network.http.speculative-parallel-limit", 6); // 禁用推测性并行加载，减少不必要的网络请求  //启用推测性并行加载
 user_pref("network.dns.disablePrefetch", false); // 禁用DNS预取，减少DNS查询和隐私泄露  //启用DNS预取
-user_pref("network.dns.disablePrefetchFromHTTPS", true); // 禁用HTTPS页面DNS预取，增强隐私保护
-user_pref("browser.urlbar.speculativeConnect.enabled", false); // 禁用地址栏推测连接，减少不必要的连接
-user_pref("browser.places.speculativeConnect.enabled", false); // 禁用书签推测连接，保护隐私
+user_pref("network.dns.disablePrefetchFromHTTPS", false); // 禁用HTTPS页面DNS预取，增强隐私保护
+user_pref("browser.urlbar.speculativeConnect.enabled", true); // 禁用地址栏推测连接，减少不必要的连接
+user_pref("browser.places.speculativeConnect.enabled", true); // 禁用书签推测连接，保护隐私
 user_pref("network.prefetch-next", false); // 禁用预取功能，减少带宽使用和隐私泄露
 
 /****************************************************************************
@@ -73,12 +73,11 @@ user_pref("browser.uitour.enabled", false); // 禁用UI导览功能，减少隐�
 user_pref("privacy.globalprivacycontrol.enabled", true); // 启用全局隐私控制，请求网站不跟踪
 
 /** OCSP & CERTS / HPKP ***/
-user_pref("security.OCSP.enabled", 0); // 禁用OCSP在线证书状态协议，提升隐私和性能
+// user_pref("security.OCSP.enabled", 0); // 禁用OCSP在线证书状态协议，提升隐私和性能
 // user_pref("privacy.antitracking.isolateContentScriptResources", true); // 隔离内容脚本资源，防止跨站跟踪
 user_pref("security.csp.reporting.enabled", false); // 禁用CSP报告，减少信息泄露
 
 /** SSL / TLS ***/
-user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true); // 将不安全的SSL协商视为损坏，提升安全性
 user_pref("browser.xul.error_pages.expert_bad_cert", true); // 显示专家证书错误页面，便于调试
 user_pref("security.tls.enable_0rtt_data", false); // 禁用TLS 0-RTT数据，提升安全性
 
@@ -91,17 +90,17 @@ user_pref("privacy.history.custom", true); // 启用自定义历史记录清理�
 user_pref("browser.privatebrowsing.resetPBM.enabled", true); // 启用私人浏览重置，保护隐私
 
 /** SEARCH / URL BAR ***/
-user_pref("browser.urlbar.trimHttps", true); // 地址栏显示时隐藏https://，简化URL显示
+// user_pref("browser.urlbar.trimHttps", true); // 地址栏显示时隐藏https://，简化URL显示
 user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true); // 用户交互时显示完整URL
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true); // 启用私人搜索独立UI，保护搜索隐私
-user_pref("browser.search.suggest.enabled", false); // 禁用搜索建议，减少数据传输
+// user_pref("browser.search.suggest.enabled", false); // 禁用搜索建议，减少数据传输
 user_pref("browser.urlbar.quicksuggest.enabled", false); // 禁用地址栏快速建议，保护隐私
 user_pref("browser.urlbar.groupLabels.enabled", false); // 禁用地址栏分组标签，简化界面
 user_pref("browser.formfill.enable", false); // 禁用表单自动填充，保护隐私
 user_pref("network.IDN_show_punycode", true); // 显示Punycode编码，防止钓鱼攻击
 
 /** HTTPS-ONLY MODE ***/
-user_pref("dom.security.https_only_mode", true); // 启用纯HTTPS模式，强制使用加密连接
+// user_pref("dom.security.https_only_mode", true); // 启用纯HTTPS模式，强制使用加密连接
 user_pref("dom.security.https_only_mode_error_page_user_suggestions", true); // HTTPS错误页显示用户建议
 
 /** PASSWORDS ***/
